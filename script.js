@@ -109,6 +109,7 @@ function Load_Stop_Words_File(evt)
         reader.onload = function(e) //wait for the file to load
         {
             stop_words_text = reader.result; //store the result
+			Enable_Word_Count_Button(); //check if the Word Count button can be enabled
         };
     }
 }
@@ -128,8 +129,21 @@ function Load_Book_File(evt)
         reader.onload = function(e) //wait for the file to load
         {
             book_text = reader.result; //store the result
+			Enable_Word_Count_Button(); //check if the Word Count button can be enabled
         };
     }
+}
+//===================================================================================================//
+
+
+//_ENABLE_WORD_COUNT_BUTTON_=========================================================================//
+//  Enables the word count button if the two files are loaded, disables it otherwise
+//===================================================================================================//
+function Enable_Word_Count_Button()
+{
+    var enabled = (stop_words_text.length>0 && book_text.length>0);
+    document.getElementById('perform_word_count').disabled = !enabled;
+    console.log("file loaded "+stop_words_text.length+" "+book_text.length);
 }
 //===================================================================================================//
 
@@ -168,6 +182,9 @@ function Click_Word_Count_Button()
 document.getElementById('upload_stopwords').addEventListener('change', Load_Stop_Words_File, false);
 document.getElementById('upload_book').addEventListener('change', Load_Book_File, false);
 document.getElementById('perform_word_count').addEventListener('click', Click_Word_Count_Button, false);
+
+//DISABLE WORD COUNT BUTTON
+Enable_Word_Count_Button();
 
 
 });
