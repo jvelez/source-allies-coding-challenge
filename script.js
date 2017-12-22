@@ -134,9 +134,40 @@ function Load_Book_File(evt)
 //===================================================================================================//
 
 
+//PERFORM_WORD_COUNT_ON_CLICK========================================================================//
+//  Call the Perform_Word_Count() function when the 'perform_word_count' button is clicked
+//===================================================================================================//
+function Click_Word_Count_Button()
+{
+    console.log("clicked "+stop_words_text.length+" "+book_text.length);
+    if(stop_words_text.length>0 && book_text.length>0)
+    {
+        //REMOVE STOP WORDS AND COUNT THE WORDS
+        var stop_word_list = Get_Stop_Word_List(stop_words_text);
+        var book_word_list = Get_Book_Word_List(book_text);
+        var book_word_content = Remove_Stop_Words(book_word_list, stop_word_list);
+        var result = Perform_Word_Count(book_word_content);
+        var resultHTML = "<strong>Top 100 words:</strong>";
+        resultHTML += "<table><tr><th>NUMBER</th><th>WORD</th><th>NUMBER OF OCURRENCES</th>";
+        
+        //limit the results to the top 100
+        for(var i=1; i<result.length && i<=100; i++) 
+        {
+            resultHTML += "<tr><td><strong>"+i+"</strong></td><td>"+result[i][0]+"</td><td>"+result[i][1]+"<tr>"
+        }
+        
+        //UPDATE HTML TO DISPLAY RESULTS
+        document.getElementById('results').innerHTML = resultHTML+"</table>";
+    }
+    
+};
+//===================================================================================================//
+
+
 //ADD EVENT LISTENERS
 document.getElementById('upload_stopwords').addEventListener('change', Load_Stop_Words_File, false);
 document.getElementById('upload_book').addEventListener('change', Load_Book_File, false);
+document.getElementById('perform_word_count').addEventListener('click', Click_Word_Count_Button, false);
 
 
 });
