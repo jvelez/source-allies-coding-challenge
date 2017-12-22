@@ -143,7 +143,7 @@ function Enable_Word_Count_Button()
 {
     var enabled = (stop_words_text.length>0 && book_text.length>0);
     document.getElementById('perform_word_count').disabled = !enabled;
-    console.log("file loaded "+stop_words_text.length+" "+book_text.length);
+	$("#results").fadeOut( "slow", function() {});
 }
 //===================================================================================================//
 
@@ -172,8 +172,15 @@ function Click_Word_Count_Button()
         
         //UPDATE HTML TO DISPLAY RESULTS
         document.getElementById('results').innerHTML = resultHTML+"</table>";
+		$("#results").fadeIn( "slow", function() {});
+		
+		//reset
+		document.getElementById('perform_word_count').disabled = true;
+		stop_words_text = "";
+		book_text = "";
+		document.getElementById('upload_stopwords').value = "";
+		document.getElementById('upload_book').value = "";
     }
-    
 };
 //===================================================================================================//
 
