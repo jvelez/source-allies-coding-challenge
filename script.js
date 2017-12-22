@@ -61,4 +61,34 @@ function Remove_Stop_Words(content, stop_words)
 //===================================================================================================//
 
 
+//_PERFORM_WORD_COUNT================================================================================//
+//  Given a content word list, counts the ocurrences of each word and returns list of tupples 
+//  that contain (word, number_of_ocurrences), and is sorted by the number_of_ocurrences.
+//===================================================================================================//
+function Perform_Word_Count(content)
+{
+	var ocurrences = {}
+    for(var i=0; i<content.length; i++)
+    {
+        //if this key is in the dict
+        if(content[i] in ocurrences)
+        {
+            ocurrences[content[i]]++; //add 1 to the counter
+        }
+        else //this is a new key in the dict
+        {
+            ocurrences[content[i]] = 1; //otherwise set its value to 1
+        }   
+    }
+    //turn dict into sorted list and return
+    var key_value_list = [];
+    for(var key in ocurrences) 
+    {
+        key_value_list.push([key, ocurrences[key]]);
+    }
+    return key_value_list.sort(function(a, b){ return b[1] - a[1]; }); //retrun sorted by descending order
+}
+//===================================================================================================//
+
+
 });
