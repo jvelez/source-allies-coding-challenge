@@ -41,4 +41,24 @@ function Get_Book_Word_List(text)
 //===================================================================================================//
 
 
+//_REMOVE_STOP_WORDS_================================================================================//
+//  Given a content word list and a stop word list, remove the stop words from the content list.
+//===================================================================================================//
+function Remove_Stop_Words(content, stop_words)
+{
+    //create a new list without the stop-words
+    var words = [];
+    for(var i=0; i<content.length; i++)
+    {
+        //if an item is not in stop_words it will return -1
+        if(stop_words.indexOf(content[i])==-1)
+        {
+            words.push(content[i]); //add the element to the new list, since is not on the stop_words
+        }
+    }
+    return words;     //return new word list
+}
+//===================================================================================================//
+
+
 });
