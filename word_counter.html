@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="script.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body class="container">
+		<!--HEADER TITLE-->
+		<h1 class="text-center">- WORD COUNTER - </h1>
+		<p class="text-center">Count the number of ocurrences per word in a given textfile.</p>
+		<br>
+		<div class="row">
+			<div class="col-sm-5" style="border-radius: 10px; border: 2px solid; margin: 1%; padding: 2%; border-color: rgba(0,64,255,0.1);">
+				<!--UPLOAD STOP-WORDS-->
+				<label class="text-center" style="width:90%;">
+					<h4 class="text-center">Stop-Words text file:</h4>
+					<input class="btn btn-file text-center" style="background-color: rgba(0,128,255,0.1); border-radius: 10px; margin: 1%; width:98%;" type="file" name="file" id="upload_stopwords">
+				</label>
+				<br>
+				<!--UPLOAD BOOK-->
+				<label class="text-center" style="width:90%;">
+					<h4 class="text-center">Book text file:</h4>
+					<input class="btn btn-file text-center" style="background-color: rgba(0,128,255,0.1); border-radius: 10px; margin: 1%; width:98%;" type="file" name="file" id="upload_book">
+				</label
+				<br>
+				<!--CHECKBOX - COUNT HYPEN DIVIDED WORDS AS SINGLE WORDS-->
+				<label for="hypen_words">
+						<input type="checkbox" checked data-toggle="toggle" id="hypen_words"> Allow hyphenated words, and abreviated words.
+				</label>
+				<br>
+				<!--CHECKBOX - INCLUDE NUMBERS AND DATES IN WORD COUNT-->
+				<label for="numbers_dates">
+					<input type="checkbox" checked data-toggle="toggle" id="numbers_dates"> Allow numbers and dates.
+				</label>
+				<br>
+				<button type="button" id="perform_word_count" class="text-center btn btn-primary">Perform Word Count</button>
+			</div>
+			<div class="col-sm-1"></div>
+			<!--RESULTS COLUMN-->
+			<div class="text-center col-sm-5" style="border-radius: 10px; border: 2px solid; margin: 1%; padding: 2%; border-color: rgba(0,64,255,0.1);">
+				<h3 class="text-center">RESULTS</h3>
+				<br>
+				<div id="results"></div>
+			</div>
+		</div>
+	</body>
+</html>
