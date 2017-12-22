@@ -2,6 +2,11 @@
 $(document).ready(function()
 {
 
+//VARIABLES TO STORE THE FILES TEXT
+var stop_words_text ="";
+var book_text = "";
+
+
 //_READ_STOP_WORD_FILE_==============================================================================//
 //  Read a given stop-word textfile and return an array of stop-word strings.
 //===================================================================================================//
@@ -89,6 +94,49 @@ function Perform_Word_Count(content)
     return key_value_list.sort(function(a, b){ return b[1] - a[1]; }); //retrun sorted by descending order
 }
 //===================================================================================================//
+
+
+//_LOAD_STOP_WORDS_FILE_=============================================================================//
+//  Function called when there's a change in the "upload_stopwords" document element.
+//  Reads the given file and stores it in stop_words_text.
+//===================================================================================================//
+function Load_Stop_Words_File(evt)
+{
+    if(evt.target.files[0]) //if the file is available
+    {
+        var reader = new FileReader(); //create new reader file
+        reader.readAsText(evt.target.files[0]); //get file
+        reader.onload = function(e) //wait for the file to load
+        {
+            stop_words_text = reader.result; //store the result
+        };
+    }
+}
+//===================================================================================================//
+
+
+//_LOAD_BOOK_FILE_===================================================================================//
+//  Function called when there's a change in the "upload_stopwords" document element.
+//  Reads the given file and stores it in book_text.
+//===================================================================================================//
+function Load_Book_File(evt)
+{
+    if(evt.target.files[0]) //if the file is available
+    {
+        var reader = new FileReader(); //create new reader file
+        reader.readAsText(evt.target.files[0]); //get file
+        reader.onload = function(e) //wait for the file to load
+        {
+            book_text = reader.result; //store the result
+        };
+    }
+}
+//===================================================================================================//
+
+
+//ADD EVENT LISTENERS
+document.getElementById('upload_stopwords').addEventListener('change', Load_Stop_Words_File, false);
+document.getElementById('upload_book').addEventListener('change', Load_Book_File, false);
 
 
 });
