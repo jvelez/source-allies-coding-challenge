@@ -7,8 +7,9 @@ import operator
 #==================================================================================================#
 def Get_Stop_Word_List(file_name):
 	file = open(file_name,encoding='utf-8') #open the given file
-	words = file.read().lower().split() #split the file into an array of strings
-	return list(set(words[words.index("a"):])) #remove unnecesary elements and return list
+	words = file.read().lower().split("#")[-1].split() #split the file into an array of strings
+    file.close(); #close the file
+	return list(set(words)) #remove duplicate elements and return list
 #==================================================================================================#
 
 
@@ -34,6 +35,7 @@ def Get_Book_Word_List(file_name):
 		else:
 			lines2+=" "
 	lines2 = lines2.split() #split into an array of strings and return list
+    file.close(); #close the file
 	return [word for word in lines2 if word != "’"] #remove lone "’" elements and return the list
 #==================================================================================================#
 
